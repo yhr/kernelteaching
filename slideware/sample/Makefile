@@ -10,3 +10,6 @@ clean:
 	rm -r out
 	rm *.pdf
 	rm *.pdf_tex
+
+view: pdf
+	xdg-open out/${filename}.pdf
