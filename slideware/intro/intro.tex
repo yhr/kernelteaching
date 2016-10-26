@@ -1,0 +1,112 @@
+\documentclass{beamer}
+
+\mode<presentation> {
+\usecolortheme{seagull}
+
+\setbeamertemplate{footline}[page number]}
+\usepackage{graphicx} 
+\usepackage{booktabs} 
+\usepackage{svg}
+\usepackage{url}
+
+%-------------------------------------------------------------------------
+
+\title[TLKDCC Intro]{The Linux Kernel Development Crash Course}
+\author{Hans Holmberg}
+\institute[LKTP]
+{
+Linux Kernel Teaching Project \\ 
+\medskip
+\textit{hans.holmberg@gmail.com}
+}
+\date{\today}
+%------------------------------------------------------------------------
+\begin{document}
+
+\begin{frame}
+\titlepage
+\includesvg{tux} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Overview}
+\tableofcontents 
+\end{frame}
+
+%-----------------------------------------------------------------------
+\section{Course goals} 
+
+\begin{frame}
+Provide a wide overview of the Linux kernel machinery and how to develop kernel code \\
+.. and in the end turn you into a kernel hacker, capable of contributing upstream and independently continue your studies :)
+\frametitle{Course goals}
+\end{frame}
+
+%-----------------------------------------------------------------------
+\section{Prerequisites}
+
+\begin{frame}
+\frametitle{Prerequisites}
+\begin{itemize}
+	\item Mandatory
+	\begin{itemize}
+		\item C
+		\item Operating system concepts
+	\end{itemize}
+
+	\item Optional (will help those who need it)
+	\begin{itemize}
+		\item GIT
+		\item Build toolchain
+		\item Linux tools(grep, diff, ..)
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%-----------------------------------------------------------------------
+\section{Lectures}
+\begin{frame}
+\frametitle{Lectures}
+Kernel basics ~ 2h each + guest lectures
+\begin{itemize}
+	\item Introduction to the Linux Kernel	
+	\item Machine descriptions, Kernel boot
+	\item Interrupts, threads and processes
+	\item Debugging and tracing 
+	\item Power management
+	\item Development best practices, communityupstreaming
+	\item (guest lectures TBA)
+\end{itemize}
+\end{frame}
+
+%-----------------------------------------------------------------------
+\section{Labs}
+\begin{frame}
+\frametitle{Labs}
+\begin{itemize}
+	\item Building and working with the kernel source
+	\item Finding documentation
+	\item Debugging
+	\item Driverdevelopment 
+\end{itemize} 
+\end{frame}
+
+%-----------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{References/further reading}
+\footnotesize{
+\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+\bibitem[Git tutorial]{p1} kernel.org
+\newblock Git tutorial
+\newblock \url{https://www.kernel.org/pub/software/scm/git/docs/gittutorial.html}
+\end{thebibliography}
+}
+\end{frame}
+
+%-----------------------------------------------------------------------
+\begin{frame}
+\Huge{\centerline{Thanks!}}
+\end{frame}
+
+\end{document} 
