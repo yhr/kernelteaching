@@ -31,3 +31,7 @@
 # Debug files
 *.dSYM/
 *.su
+
+# pdf files
+*.pdf
+*.pdf_tex
