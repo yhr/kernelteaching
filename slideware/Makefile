@@ -6,7 +6,7 @@ LATEX_OPTS = --shell-escape
 LATEX_OPTS += --interaction=batchmode
 
 SVGTOLATEX ?= inkscape
-SVGTOLATEX_OPTS ?= -z --export-latex
+SVGTOLATEX_OPTS ?= -z -T --export-area-drawing
 SVGTOLATEX_IN ?= --file=
 SVGTOLATEX_OUT ?= --export-pdf=
 
@@ -15,6 +15,9 @@ VPATH = .:./$(OUT_DIR)
 all: pdf
 
 # Specific view targets goes here
+
+view-overview: pdf
+	$(VIEWER) $(OUT_DIR)/overview/overview.pdf
 
 view-intro: pdf
 	$(VIEWER) $(OUT_DIR)/intro/intro.pdf
