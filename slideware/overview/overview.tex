@@ -91,7 +91,7 @@ The kernel's role in the system: \\
 \begin{frame}
 \frametitle{The kernel ABI}
 \begin{itemize}
-	\item The Linux ABI is the kernel–user space API, which allows programs in user space to access system resources and services of the Linux kernel. It is composed out of the System Call Interface of the Linux kernel and the subroutines in the GNU C Library (glibc). which are resonably compatible with POSIX. 
+	\item The Linux ABI is the kernel-–user space API, which allows programs in user space to access system resources and services of the Linux kernel. It is composed out of the System Call Interface of the Linux kernel and the subroutines in the GNU C Library (glibc). which are resonably compatible with POSIX. 
 The ABI can also be considered to include the interfaces provided in the virtual file system. 
 
 	\item The Linux ABI must be backward compatible and must not break; this stability guarantees the portability of not only source code, but also pre-compiled programs. 
@@ -109,7 +109,7 @@ The ABI can also be considered to include the interfaces provided in the virtual
 \frametitle{Pitfalls}
 \begin{itemize}
 	\item Kernel headers (kernel *.h-files needed by user space)
-User space and the kernel must have the same definition of structures passed over to the other side.\\
+	\item User space and the kernel must have the same definition of structures passed over to the other side.
 	\item 32 vs 64 bit - The kernel might be running in 64 bit while user space is 32 bit
 Pointer problems and different definitions of long, be careful!
 \end{itemize}
@@ -158,7 +158,7 @@ There are several different kernels being maintained and released from the upstr
 \begin{itemize}
 	\item Mainline (i.e 4.9-rc2)
 	\begin{itemize}
-		\item Maintained by Linus Torvalds, dictator
+		\item Maintained by Linus Torvalds, benevolent dictator
 		\item Master tree, all new code is merged here
 	\end{itemize}
 	\item Stable and longterm: (i.e 4.4.30, 3.10.105)
@@ -181,7 +181,7 @@ There are several different kernels being maintained and released from the upstr
 	\item \textbf{arch} : architecture specific code(i.e x86, arm, arm64, cris) \\
 	\item \textbf{drivers} : device trivers (i.e, keyboards, mmc, ..) \\
 	\item \textbf{documentation} : kernel documentation \\
-	\item \textbf{scripts} : kernel utilities i.e(checkpatch, cleanpatch) \\
+	\item \textbf{scripts} : kernel utilities i.e (checkpatch, cleanpatch) \\
 \end{itemize}
 
 A really nice, cross-referenced web interface for accessing different version of the source code is prprovided by Free Electrons\footnote{LXR: \url{http://lxr.free-electrons.com/source/kernel/}\\}.

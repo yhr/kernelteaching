@@ -30,11 +30,11 @@ view-sample: pdf
 view: pdf
 	$(VIEWER) $(wildcard $(OUT_DIR)/*/*.pdf)
 
-svg: $(addsuffix .pdf_tex, $(basename $(wildcard */*.svg)))
+svg: $(addsuffix .pdf, $(basename $(wildcard */*.svg)))
 pdf: svg $(addsuffix .pdf, $(basename $(wildcard */*.tex)))
 
 
-%.pdf_tex: %.svg
+%.pdf: %.svg
 	$(eval DIR=$(dir $?))
 	$(eval TARGET=$(addsuffix .pdf, $(basename $@)))
 	@echo "* Processing $?"
