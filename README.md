@@ -7,3 +7,7 @@ course, with the goal of giving a wide understanding of what the Linux kernel
 is, how the big cogs in its machinery are set up, how it is built, how to debug, where to find documentation and how it is developed in the community.
 
 The intention is to turn students into kernel hackers, capable of contributing upstream and independently continue their studies.
+
+Please see our wiki page for more information on the projec and how to join the mailing list and contribute.
+
+https://github.com/yhr/kernelteaching/wiki
