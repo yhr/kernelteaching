@@ -89,10 +89,11 @@ The kernel's role in the system: \\
 \end{frame}
 
 \begin{frame}
-\frametitle{The kernel ABI}
+\frametitle{The Kernel ABI}
 \begin{itemize}
-	\item The Linux ABI is the kernel-–user space API, which allows programs in user space to access system resources and services of the Linux kernel. It is composed out of the System Call Interface of the Linux kernel and the subroutines in the GNU C Library (glibc). which are resonably compatible with POSIX. 
-The ABI can also be considered to include the interfaces provided in the virtual file system. 
+	\item The Linux ABI is the kernel-–user space API, which allows programs in user space to access system resources and services of the Linux kernel.
+	\item It is composed out of the System Call Interface of the Linux kernel and the subroutines in the GNU C Library (glibc), which are resonably compatible with POSIX.
+	\item The ABI can also be considered to include the interfaces provided in the virtual file system. 
 
 	\item The Linux ABI must be backward compatible and must not break; this stability guarantees the portability of not only source code, but also pre-compiled programs. 
 \end{itemize}
@@ -108,8 +109,7 @@ The ABI can also be considered to include the interfaces provided in the virtual
 \begin{frame}
 \frametitle{Pitfalls}
 \begin{itemize}
-	\item Kernel headers (kernel *.h-files needed by user space)
-	\item User space and the kernel must have the same definition of structures passed over to the other side.
+	\item Kernel headers (kernel *.h-files needed by user space) consistency - User space and the kernel must have the same definition of structures passed over to the other side.
 	\item 32 vs 64 bit - The kernel might be running in 64 bit while user space is 32 bit
 Pointer problems and different definitions of long, be careful!
 \end{itemize}
@@ -123,7 +123,7 @@ Pointer problems and different definitions of long, be careful!
 \begin{itemize}
 	\item "Everything is a file" describes one of the defining features of Unix, and its derivatives.
 
-	\item Linux uses the file system abstraction to provide access to hardware,configuration and debug information by exposing files that can be read and written.
+	\item Linux uses the file system abstraction to provide access to hardware, configuration and debug information by exposing files that can be read and written.
 	\item Note that these special files are only exposed in file system name space - the files can be accessed like normal files but are not actually stored on any media.
 \end{itemize}
 \end{frame}
