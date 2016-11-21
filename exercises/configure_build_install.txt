@@ -1,0 +1,98 @@
+
+Exercise: Configuring, building and installing the kernel on a RPI
+==================================================================
+
+USB-stick users: the raspberry pi kernel tree is cloned in  ~/src/rpi-linux
+If you're labbing in your own environment, clone the rpi-kernel from
+https://github.com/raspberrypi/linux
+
+You can try to run the exercises on an upstream kernel too, but then you are
+on your own :)
+
+0. Prepare the sd-card with a raspbian-jessie-lite image
+--------------------------------------------------------
+
+There is an image of raspian on the USB-stick, downloaded from 
+https://www.raspberrypi.org/downloads/raspbian/
+
+Write the image stored in ~/rasbianimage/ to the sd-card (or get help from someone if you don't have a sd-card slot on your machine) 
+
+https://www.raspberrypi.org/documentation/installation/installing-images/linux.md 
+
+
+1. Check out the latest branch and look at the history
+------------------------------------------------------
+
+The kernel shipping with the raspbian distribution is 4.4, which is a tad old.
+We want to use the latest available kernel from the rpi kernel repository,
+so switch branch to rpi-4.9.y, after checking kernel 4.4 was released.
+Tip: check the history for the Makefile.
+
+Q: What date was kernel 4.4 released?
+
+..then check how many patches that has been merged between 4.4 and 4.9-rc4
+
+Tip: git log [first revison]..[second revision] --pretty=oneline | wc -l
+
+Revisions can be specified as a hash of a particular commit, or as a tag.
+Upstream kernel version tags have not been cloned into the rpi repository,
+so you have to use commit hashes as revisons.
+
+Q: If the maintainers spent fifteen minutes reviewing each patch, how many man months, roughly, was spent on quality control?
+
+
+2. Configure the kernel
+-----------------------
+
+NB: don't forget to specify the right architecure(arm) via the ARCH make parameter.
+
+2.1 Use the kernel make system to generate the built-in default kernel 
+configuration.
+
+If you have a RPI v2 or RPI v3 the default make config target is 
+bcm2835_defconfig, if it is RPI v1 it is bcmrpi_defconfig.
+
+Make a copy of the generated .config named .origconfig
+
+2.2 Configure the kernel to include the gpio-regulator driver as built-in.
+--------------------------------------------------------------------------
+
+Tip: This will tell you where the driver is located
+git grep gpio-regulator -- drivers/
+
+Tip: Figure out which config flag to enable by inspecting the Makefile in the
+driver's directory, then search for it in menuconfig (/ will get you into search mode in menuconfig)
+
+Check the difference between the new config (.config) and the default one.
+
+3. Build the kernel
+-------------------
+
+NB: in addition to specifying architecture, you now neeed to specify a cross
+compiler via the CROSS_COMPILE parameter in the kernel build. for those using
+the prepared usb sticks, the path to the cross compile toolchain is stored in the environment 
+variable $RPI_CC 
+
+Build the targets zImage, dtbs and modules
+TIP: Use the -j<number of cpus> to parallelize the build and speed things up.
+
+4 Install the kernel
+--------------------
+
+Install kernelimage, device tree blobs and modules:
+
+	cp arch/arm/boot/zImage <path to piroot>/boot
+	cp arch/arm/boot/dts/*.dtb <path to piroot>/boot
+	make ARCH=arm INSTALL_MOD_PATH=<path to piroot> modules_install
+
+Add the following line to <path to piroot>/boot/config on the pi to tell it to boot your kernel:
+	kernel=zImage
+
+Reboot the pi & check that you are running the new kernel.
+Have a look at the installed module sets:
+	ls /lib/modules
+
+Q: Why did we have to install a new set of kernel modules?
+
+
+Done!

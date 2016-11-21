@@ -1,0 +1,50 @@
+Preparing your Raspberry PI for the labs
+========================================
+
+Boot up the pi with a serial cable attached.
+Start minicom on your PC and login to the raspberry pi (you might need to
+press enter to get to the login prompt)
+
+TIP: exit minicom by pressing CTRL-A Q
+
+User: pi
+Password: raspberry
+
+Change the default password: 
+	sudo passwd
+
+Set root password: 
+	sudo passwd root
+
+Change the hostname of your PI so you won't confuse it with any other
+on the network:
+	su
+	echo <new hostname> > /etc/hostname
+
+Enable root ssh login:
+	sudo nano /etc/ssh/sshd_config
+	..and change the line "PermitRootLogin without-password" to:
+		PermitRootLogin yes
+	Exit nano with CTRL-X (remember to save when asked)
+
+Reboot:
+	sudo reboot now
+
+Check IP adress:
+	ifconfig
+	eth0 ...
+	   inet addr:<pi ip> ..
+	   ..
+
+On your PC, log in over ssh to your pi to test:
+	ssh pi@<pi ip>
+
+On your PC, mount the pi root file system over ssh:
+	mkdir piroot
+	sshfs root@<pi ip> piroot
+
+You can now access the PI's entire file system in the piroot directory.
+Neat, huh? This will allow you to replace the kernel, install modules
+and edit files without having to plug in the PI's sd card into your PC.
+
+Done!
