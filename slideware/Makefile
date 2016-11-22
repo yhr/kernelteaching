@@ -22,6 +22,9 @@ view-overview: pdf
 view-intro: pdf
 	$(VIEWER) $(OUT_DIR)/intro/intro.pdf
 
+view-boot: pdf
+	$(VIEWER) $(OUT_DIR)/boot/machinedescriptions_n_boot.pdf
+
 view-sample: pdf
 	$(VIEWER) $(OUT_DIR)/sample/presentation_1.pdf
 
