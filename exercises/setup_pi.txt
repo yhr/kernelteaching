@@ -41,7 +41,7 @@ On your PC, log in over ssh to your pi to test:
 
 On your PC, mount the pi root file system over ssh:
 	mkdir piroot
-	sshfs root@<pi ip> piroot
+	sshfs root@<pi ip>:/ piroot
 
 You can now access the PI's entire file system in the piroot directory.
 Neat, huh? This will allow you to replace the kernel, install modules

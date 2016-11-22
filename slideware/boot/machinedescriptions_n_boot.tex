@@ -49,7 +49,7 @@ Linux Kernel Teaching Project \\
 \frametitle{Bootstrapping}
 \begin{itemize}
 	\item The kernel cannot start itself on a system - a bootloader is needed to load the kernel from disk(or over the network,  a serial cable or usb, ..).
-	\item The boot loader (that is usally bootstrapped itself) must initialize the system memory and load the kernel and provide the kernel with sufficent information to initialize the machine it is running on.
+	\item The boot loader (that is usally bootstrapped as well) must initialize the system memory and load the kernel and provide the kernel with sufficent information to initialize the machine it is running on.
 \end{itemize}
 \end{frame}
 
@@ -269,7 +269,7 @@ Drivers and devices are attached to a bus to communicate with the hardware.
 \frametitle{Useful tools}
 \begin{itemize}
 	\item List loaded modules: lsmod
-	\item Load module: insmod, modprobe(with dependencies)
+	\item Load module: insmod(single module), modprobe(resolves dependencies)
 	\item Display module information: modinfo
 	\item Generate module dependencies: depmod
 	\item Driver module example: pl2303 serial converter\\
