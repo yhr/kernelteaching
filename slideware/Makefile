@@ -33,8 +33,8 @@ view-sample: pdf
 view: pdf
 	$(VIEWER) $(wildcard $(OUT_DIR)/*/*.pdf)
 
-svg: $(addsuffix .pdf, $(basename $(wildcard */*.svg)))
-pdf: svg $(addsuffix .pdf, $(basename $(wildcard */*.tex)))
+svg: $(addsuffix .pdf, $(basename $(shell find ./ -type f -name *.svg)))
+pdf: svg $(addsuffix .pdf, $(basename $(shell find ./ -type f -name *.tex)))
 
 
 %.pdf: %.svg
