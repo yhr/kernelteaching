@@ -19,6 +19,8 @@ Write the image stored in ~/rasbianimage/ to the sd-card (or get help from someo
 
 https://www.raspberrypi.org/documentation/installation/installing-images/linux.md 
 
+Then follow the instructions in setup_pi.txt.
+
 
 1. Check out the latest branch and look at the history
 ------------------------------------------------------
@@ -50,7 +52,7 @@ NB: don't forget to specify the right architecure(arm) via the ARCH make paramet
 configuration.
 
 If you have a RPI v2 or RPI v3 the default make config target is 
-bcm2835_defconfig, if it is RPI v1 it is bcmrpi_defconfig.
+bcm2709_defconfig, if it is RPI v1 it is bcmrpi_defconfig.
 
 Make a copy of the generated .config named .origconfig
 
@@ -78,6 +80,10 @@ TIP: Use the -j<number of cpus> to parallelize the build and speed things up.
 
 4 Install the kernel
 --------------------
+
+NB: make sure you have sshfs-mounted (see setup_pi.txt) the pi's root filesystem.
+The instructions will probably work if you insert the PI sd card on your computer and use
+the path to the mount point of the root fs as <path to piroot>.
 
 Install kernelimage, device tree blobs and modules:
 
