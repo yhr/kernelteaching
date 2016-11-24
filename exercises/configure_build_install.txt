@@ -9,6 +9,15 @@ https://github.com/raspberrypi/linux
 You can try to run the exercises on an upstream kernel too, but then you are
 on your own :)
 
+If you're doing the exercises in your own linux installation, you must install
+the toolchain for cross compiling. Follow the instructions under
+"INSTALL TOOLCHAIN" @
+	https://www.raspberrypi.org/documentation/linux/kernel/building.md
+
+Make sure you point out the right path in CROSS_COMPILE when doing kernel
+builds!
+
+
 0. Prepare the sd-card with a raspbian-jessie-lite image
 --------------------------------------------------------
 
@@ -17,6 +26,7 @@ https://www.raspberrypi.org/downloads/raspbian/
 
 Write the image stored in ~/rasbianimage/ to the sd-card (or get help from someone if you don't have a sd-card slot on your machine) 
 
+See:
 https://www.raspberrypi.org/documentation/installation/installing-images/linux.md 
 
 Then follow the instructions in setup_pi.txt.
@@ -46,7 +56,9 @@ Q: If the maintainers spent fifteen minutes reviewing each patch, how many man m
 2. Configure the kernel
 -----------------------
 
-NB: don't forget to specify the right architecure(arm) via the ARCH make parameter.
+NB: don't forget to specify the right architecure(arm) via the ARCH make
+parameter in every make-step - if not, the make system will assume X86 and
+the config will be all messed up.
 
 2.1 Use the kernel make system to generate the built-in default kernel 
 configuration.
@@ -72,8 +84,8 @@ Check the difference between the new config (.config) and the default one.
 
 NB: in addition to specifying architecture, you now neeed to specify a cross
 compiler via the CROSS_COMPILE parameter in the kernel build. for those using
-the prepared usb sticks, the path to the cross compile toolchain is stored in the environment 
-variable $RPI_CC 
+the prepared usb sticks, the path to the cross compile toolchain is stored in
+the environment variable $RPI_CC.
 
 Build the targets zImage, dtbs and modules
 TIP: Use the -j<number of cpus> to parallelize the build and speed things up.
