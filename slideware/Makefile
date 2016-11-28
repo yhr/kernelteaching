@@ -28,6 +28,9 @@ view-boot: pdf
 view-sample: pdf
 	$(VIEWER) $(OUT_DIR)/sample/presentation_1.pdf
 
+view-interrupts: pdf
+	$(VIEWER) $(OUT_DIR)/interrupts/memory_interrupts_scheduling.pdf
+
 # ---
 
 view: pdf
