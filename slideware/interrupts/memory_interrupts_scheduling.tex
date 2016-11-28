@@ -190,14 +190,13 @@ Note: you need to use the flag IRQF\_ONESHOT for the pi..
 \end{frame}
 
 \begin{frame}
-\frametitle{SCHED_NORMAL: completely fair scheduler}
+\frametitle{SCHED\_NORMAL: completely fair scheduler}
 \begin{itemize}
 	\item Tries to emulate a processor that is capable of running several tasks simultaneously.
 	\item Aims to compensate a task for the time it has not been running, by calculating the wait time. 
 	\item When a task is running, it the wait time decreases and eventually a task with a longer wait time is scheduled.
 \end{itemize}
 See the kernel documentation for more information.\footnote{Kernel documentation, CFS scheduler \url{http://lxr.free-electrons.com/source/Documentation/scheduler/sched-design-CFS.txt} \\}
-
 
 \end{frame}
 %-----------------------------------------------------------------------
