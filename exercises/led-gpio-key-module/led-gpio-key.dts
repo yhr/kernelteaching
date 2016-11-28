@@ -1,0 +1,50 @@
+/dts-v1/;
+/plugin/;
+/ {
+	compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
+	fragment@0 {
+		target-path = "/soc";
+                 __overlay__ {
+			ledkey: ledkey {
+				compatible = "gpio-led-key";
+
+				pinctrl-names = "default";
+				pinctrl-0 = <&my_pins>;
+
+				gpios = <&gpio 18 1>;
+				linux,code = <30>; // "A"
+
+				led-supply = <&gpio_regulator>;
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&gpio>;
+                __overlay__ {
+			my_pins: my_pins {
+				brcm,pins = <18>;
+				brcm,function = <0>; // in (initially)
+				brcm,pull = <2>; // pullup
+			};
+		};
+	};
+
+	fragment@2 {
+		target-path = "/soc";
+                __overlay__ {
+			gpio_regulator: gpio_regulator {
+				compatible = "regulator-gpio";
+
+				regulator-name = "fake_regulator_gpio_23";
+
+				enable-gpio = <&gpio 23 0>;
+				states = <0000000 0
+					  3300000 1>;
+
+				enable-active-high;
+			};
+		};
+
+	};
+};
