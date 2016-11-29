@@ -6,11 +6,18 @@ The code and the device tree overlay is located in gpio-led-module/
 0. Preparations
 ---------------
 
-Set the following environment variables(cut an paste into a shell window)
+Connecting the LED-button device.
+Connect the cables(there are two different variants) like this:
+(just below the serial cable)
 
-KERNEL=/home/student/src/rpi-linux
-ARCH=arm
-CROSS_COMPILE=$RPI_CC
+PI GPIO         Cable variant 1         Cable variant2
+-------         ---------------         --------------
+GPIO 18         Orange                  Yellow
+GND             Brown                   Blue
+GPIO 23         Red                     Green
+
+See http://www.hobbytronics.co.uk/image/data/tutorial/raspberry-pi/gpio-pinout-rev2.jpg
+
 
 To enable enumeration of the gpio-led device, we have to add it to 
 the RPI device tree. This is easy to do using something called device tree
@@ -23,7 +30,7 @@ to include extra devices.
 
 * Build the dtb target(like the previous lab)
 
-* Copy the resulting .dtb file (in arch/arm/boot/dts/overlays) to
+* Copy the resulting led-gpio-key.dtbo file (in arch/arm/boot/dts/overlays) to
 	<rpi root>/boot/overlays
 
 * Enable the overlay by adding the following line
@@ -31,21 +38,47 @@ to include extra devices.
 	to <rpi root>/boot/overlays
 
 * Reboot the pi and check that a led-gpio-key node exist in 
-	/proc/devicetree
+	/proc/devicetree/soc/ledkey
+
+* Look at the attributes that the node exports in the sysfs, and
+compare to what's in the .dts file.
 
 1. Build the out of tree driver, copy it to the pi insert it
 ------------------------------------------------------------
 
+A good first step is to copy the led-gpio-key module directory to i.e.
+~/src and create a git project so you can go back if you mess anything up.
+
+i.e.
+
+cp -r ../kernelteaching/exercises/led-gpio-key-module ~/src
+cd ~/src/led-gpio-key-module
+git init .
+git add *
+git commit -m "Initial commit"
+
+
 * Perform make in the driver's directory, transfer the resulting .ko-file
 to the pi(anywhere is good) and insert it.
 
+Make sure you pass parameters when building:
+
+make ARCH=arm CROSS_COMPILE=$RPI_CC KERNEL=/home/student/src/rpi-linux
+
+Then:
+
+* Inspect the module info with modinfo
 * Check that is it is loaded with lsmod
+
 
 2. Make the driver enumerate by adding the correct compatible-string
 --------------------------------------------------------------------
 
 * The device table is not correct. Fix this. Have a look at the device tree
 overlay to figure out the right string.
+
+To load a new version of the module you have to unload it first:
+sudo rmmod led-gpio-key
 
 * Check that a new input device is created in /dev/input
 
@@ -56,6 +89,6 @@ The gpio interrupt should result in a report to the input framework. Enable the 
 
 Use a threaded irq(devm_request_threaded_irq)
 Test that events are emitted using evtest.
-
+Install evtest (on the pi) if needed: sudo apt-get install evtest
 
 
