@@ -81,7 +81,7 @@ static int led_gpio_key_probe(struct platform_device *pdev)
 
 	set_bit(ddata->buttoncode, input->keybit);
 	
-	ddata->gpio = devm_gpiod_get(&pdev->dev, NULL);
+	ddata->gpio = devm_gpiod_get(&pdev->dev, NULL, 0);
 	if (IS_ERR(ddata->gpio)) {
 		dev_err(dev, "unable to allocate gpio\n");
 		err = PTR_ERR(ddata->gpio);
@@ -126,6 +126,6 @@ static struct platform_driver led_gpio_key_device_driver = {
 module_platform_driver(led_gpio_key_device_driver);
 
 MODULE_DEVICE_TABLE(of, led_gpio_key_of_match);
-MODULE_AUTHOR("Your Name <your.name@intel.com>");
+MODULE_AUTHOR("Your Name <your.name@<yourhost>.com>");
 MODULE_DESCRIPTION("Driver for gpio buttons with a led");
 MODULE_LICENSE("GPL v2");
