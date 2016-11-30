@@ -87,7 +87,15 @@ sudo rmmod led-gpio-key
 
 The gpio interrupt should result in a report to the input framework. Enable the interrupt in the probe function.
 
-Use a threaded irq(devm_request_threaded_irq)
+* Start by reading the code and try to undestand what every bit does. 
+
+* Use a threaded irq(devm_request_threaded_irq) to implement the top/bottom half pattern.
+	Note: you don't need to do anything in the top half for this driver
+	Documentation: https://www.kernel.org/doc/htmldocs/kernel-api/API-request-threaded-irq.html
+
+TIP: Search for other drivers doing the same thing, i.e:
+	git grep devm_request_threaded_irq drivers/input 
+
 Test that events are emitted using evtest.
 Install evtest (on the pi) if needed: sudo apt-get install evtest
 
