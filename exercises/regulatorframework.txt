@@ -1,0 +1,39 @@
+Learning a framework: Using regulators
+======================================
+
+In this exercise, you will learn how to use a new framework by implementing
+support for turning on and off the LED by using the regulator framework.
+
+0. Preparations
+---------------
+
+Make sure that you've completed the device driver exercise, and that you have
+built the kernel with gpio-regulator support(as specified in the build 
+exercise)
+
+Read the kernel documentation on regulators. Search for it in Documentation/
+The regulator to be used is specified in the led-keys device tree overlay,
+so have a look at how to obtain the right regulator for the device.
+
+Have a look at code using the regulator consumer API. Google for presentations.
+
+1. Add a link between the device and the regulator
+--------------------------------------------------
+
+Q: There is a 1-1 mapping between a led-button device and a regulator controlling the led, what data structure should contain the link? 
+
+What part of the code should get hold of regulator from the device tree?
+
+Don't forget to handle errors. 
+
+Q: Thee boiler plate driver code uses devm_ variants
+of a lot of API resource-handling functions, why is this so good? How are resourced freed if there is an error during probe?
+
+2. Control the LED with the button
+----------------------------------
+
+The LED should be off when the button is pressed(and on otherwise on).
+Make sure that the module can be unloaded and loaded again.
+
+Done!
+
