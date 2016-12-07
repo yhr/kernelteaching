@@ -1,7 +1,7 @@
 Device driver fundamentals: probing and interrupts
 ==================================================
 
-The code and the device tree overlay is located in gpio-led-module/
+The code and the device tree overlay is located in exercises/led-gpio-key-module/
 
 0. Preparations
 ---------------
