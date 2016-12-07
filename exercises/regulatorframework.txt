@@ -2,7 +2,8 @@ Learning a framework: Using regulators
 ======================================
 
 In this exercise, you will learn how to use a new framework by implementing
-support for turning on and off the LED by using the regulator framework.
+support for turning on and off the LED in the led-button driver by using the 
+regulator framework.
 
 0. Preparations
 ---------------
@@ -17,7 +18,7 @@ so have a look at how to obtain the right regulator for the device.
 
 Have a look at code using the regulator consumer API. Google for presentations.
 
-1. Add a link between the device and the regulator
+1. Aquire the regulator and link it to the device
 --------------------------------------------------
 
 Q: There is a 1-1 mapping between a led-button device and a regulator controlling the led, what data structure should contain the link? 
