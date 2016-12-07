@@ -35,10 +35,10 @@ to include extra devices.
 
 * Enable the overlay by adding the following line
 	dtoverlay=led-gpio-key
-	to <rpi root>/boot/overlays
+	to <rpi root>/boot/config.txt
 
 * Reboot the pi and check that a led-gpio-key node exist in 
-	/proc/devicetree/soc/ledkey
+	/proc/device-tree/soc/ledkey
 
 * Look at the attributes that the node exports in the sysfs, and
 compare to what's in the .dts file.
