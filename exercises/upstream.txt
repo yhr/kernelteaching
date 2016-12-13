@@ -1,0 +1,96 @@
+Upstreaming a driver
+====================
+
+In this exercise, you will learn how to move an out-of-tree device driver
+into the kernel tree, add the driver to the kernel configuration mechanism
+and make files, create a patch with the diff, check that it is upstream
+ready and send it to the teacher for review.
+
+0. Preparations
+---------------
+
+Make sure that you've completed the device driver and regulator exercises and
+have a working driver.
+
+Read through https://kernelnewbies.org/FirstKernelPatch
+
+1. Move the gpio-led-key driver to the kernel tree
+---------------------------------------------------
+
+Move the out-of tree driver you have worked on into the kernel tree.
+
+TIP: Commit any changes you have made before to the rpi-kernel tree,
+so you don't lose the overlay, and start a new branch on top of that before
+you start moving the driver.
+
+Move the driver to a good location under drivers/ and edit the
+subdirectory's Makefile and KConfig files to include the driver in the build
+and the configuration system.
+
+Make the driver buildable as a module(tristate config flag).
+
+TIP: inspect the Makefile and KConfig files and look at similar drivers
+for inspiration. 
+
+2. Build the driver as an in-kernel driver
+-----------------------------------------
+
+Build the driver with your new config flag=Y (making it a part of zImage).
+
+Q: The driver will initialize correctly. What error is printed? Check using dmesg.
+
+
+The problem is that the module_platform_driver_probe function does not
+support deferred probing, which allows drivers to re-probe if their dependencies(i.e. a regulator) has not been initialized yet.
+
+See http://lxr.free-electrons.com/source/drivers/base/platform.c#L660
+
+Change the driver module_platform_driver to use module_platform_driver 
+instead:
+
+static struct platform_driver led_gpio_key_device_driver = {
+        .driver         = {
+                .name   = DRV_NAME,
+                .of_match_table = of_match_ptr(led_gpio_key_of_match),
+        },
+        .probe = led_gpio_key_probe,
+};
+
+module_platform_driver(led_gpio_key_device_driver);
+
+The first probe will still fail, but at the second attempt, the probe
+will succeed (as the regulator driver has had time to complete it's init).
+
+3. Build the driver as a kernelmodule
+-------------------------------------
+
+Build the driver with your new config flag=M and test that it works as
+expected.
+
+Q: Do you need to load the module manually still? Why?
+
+Make sure the module can be unloaded and loaded again.
+
+TIP: you need to use modprobe to load the kernel module (or locate the module in /lib where you installed it using make modules_install )
+
+
+4. Generate a patch
+-------------------
+
+Commit the result on your new branch, generate a patch
+git format-patch -1, and make sure it passes through the checkpatch tool (see the kernel newbies page for details).
+
+Write a good commit message(look at other commits in the same subdirectory),
+
+You'll probably need to do several iterations before you pass checkpatch.
+so "git commit --amend" is your friend.
+
+Signoff the patch before  mailing it to the teacher, preferably using git send-email. 
+
+NOTE: to send patches using git send-email, you have to install the package git-email and configure a smtp server. See the kernelnewbies article for details.
+
+Q: If you would have tried to upstream the patch for real, what maintainer would you have sent it to? Check using ./scripts/get_maintainer.pl <your patch>
+
+The teacher will review your patch, and pass you when he's happy :)
+
+Done!
