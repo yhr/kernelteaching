@@ -31,6 +31,9 @@ view-sample: pdf
 view-interrupts: pdf
 	$(VIEWER) $(OUT_DIR)/interrupts/memory_interrupts_scheduling.pdf
 
+view-debug: pdf
+	$(VIEWER) $(OUT_DIR)/debug/debug.pdf
+
 # ---
 
 view: pdf
