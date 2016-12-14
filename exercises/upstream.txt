@@ -37,11 +37,11 @@ for inspiration.
 
 Build the driver with your new config flag=Y (making it a part of zImage).
 
-Q: The driver will initialize correctly. What error is printed? Check using dmesg.
-
+Q: The driver will not initialize correctly. What error is printed? Check using dmesg.
 
 The problem is that the module_platform_driver_probe function does not
-support deferred probing, which allows drivers to re-probe if their dependencies(i.e. a regulator) has not been initialized yet.
+support deferred probing, which allows drivers to re-probe if their 
+dependencies(i.e. a regulator) has not been initialized yet.
 
 See http://lxr.free-electrons.com/source/drivers/base/platform.c#L660
 
