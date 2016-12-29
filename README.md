@@ -8,6 +8,9 @@ is, how the big cogs in its machinery are set up, how it is built, how to debug,
 
 The intention is to turn students into kernel hackers, capable of contributing upstream and independently continue their studies.
 
-Please see our wiki page for more information on the projec and how to join the mailing list and contribute.
+To build the slideware you need to install the following packages:
+	latex-beamer rubber inkscape (assuming you are running ubuntu 16)
+
+Please see our wiki page for more information on the project and how to join the mailing list and contribute.
 
 https://github.com/yhr/kernelteaching/wiki
