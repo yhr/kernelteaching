@@ -34,6 +34,9 @@ view-interrupts: pdf
 view-debug: pdf
 	$(VIEWER) $(OUT_DIR)/debug/debug.pdf
 
+view-power: pdf
+	$(VIEWER) $(OUT_DIR)/power/power.pdf
+
 # ---
 
 view: pdf
