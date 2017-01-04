@@ -37,29 +37,9 @@ for inspiration.
 
 Build the driver with your new config flag=Y (making it a part of zImage).
 
-Q: The driver will not initialize correctly. What error is printed? Check using dmesg.
+Q: The driver will not suceed at the first probe. What error is printed? Check using dmesg.
 
-The problem is that the module_platform_driver_probe function does not
-support deferred probing, which allows drivers to re-probe if their 
-dependencies(i.e. a regulator) has not been initialized yet.
-
-See http://lxr.free-electrons.com/source/drivers/base/platform.c#L660
-
-Change the driver module_platform_driver to use module_platform_driver 
-instead:
-
-static struct platform_driver led_gpio_key_device_driver = {
-        .driver         = {
-                .name   = DRV_NAME,
-                .of_match_table = of_match_ptr(led_gpio_key_of_match),
-        },
-        .probe = led_gpio_key_probe,
-};
-
-module_platform_driver(led_gpio_key_device_driver);
-
-The first probe will still fail, but at the second attempt, the probe
-will succeed (as the regulator driver has had time to complete it's init).
+Q: The kernel probes the driver again, and second attempt succeeds. Why?
 
 3. Build the driver as a kernelmodule
 -------------------------------------
