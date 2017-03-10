@@ -32,13 +32,28 @@ Linux Kernel Teaching Project \\
 \tableofcontents 
 \end{frame}
 
+\section{Background}
+\begin{frame}
+\frametitle{Background}
+Why teaching kernel development?
+\begin{itemize}
+\item Kernel development has a steep learning curve
+\item A crash course get students past the first bump
+\end{itemize}
+
+Why do it open-source?
+\begin{itemize}
+\item Share the effort!
+\item More teachers, reach more students
+\end{itemize}
+\end{frame}
+
 %-----------------------------------------------------------------------
 \section{Course goals} 
-
 \begin{frame}
+\frametitle{Course goals - what is achievable?}
 Provide a wide overview of the Linux kernel machinery and how to develop kernel code \\
-.. and in the end turn you into a kernel hacker, capable of contributing upstream and independently continue your studies :)
-\frametitle{Course goals}
+.. and in the end turn students into kernel hackers, capable of contributing upstream and independently continue exploring.
 \end{frame}
 
 %-----------------------------------------------------------------------
@@ -66,15 +81,23 @@ Provide a wide overview of the Linux kernel machinery and how to develop kernel 
 \section{Lectures}
 \begin{frame}
 \frametitle{Lectures}
-Kernel basics ~ 2h each + guest lectures
+Theory 
 \begin{itemize}
-	\item Introduction to the Linux Kernel	
-	\item Machine descriptions, Kernel boot
+	\item Linux Kernel overview 
+	\item Kernel boot and machine descriptions (ACPI/DT)
 	\item Interrupts, threads and processes
-	\item Drivers, Debugging and tracing
 	\item Power management
-	\item Development best practices, community and upstreaming
-	\item (guest lectures TBA)
+\end{itemize}
+Craft
+\begin{itemize}
+	\item Navigating the source tree
+	\item Configuring and building the kernel
+	\item Debugging and tracing
+\end{itemize}
+Community
+\begin{itemize}
+	\item Development best practices
+	\item Community interaction and upstreaming
 \end{itemize}
 \end{frame}
 
@@ -83,25 +106,35 @@ Kernel basics ~ 2h each + guest lectures
 \begin{frame}
 \frametitle{Labs}
 \begin{itemize}
-	\item Building and working with the kernel source
-	\item Finding documentation
+	\item Configuring and building your own kernel
+	\item Finding documentation in the source tree and history
 	\item Debugging
 	\item Driver development
-\end{itemize} 
+	\item Learning a framework
+	\item Upstreaming
+\end{itemize}
 \end{frame}
 
 %-----------------------------------------------------------------------
+\section{What's next?}
+\begin{frame}
+\frametitle{What's next?}
+\begin{itemize}
+	\item Great feedback so far, so we're going to continue this.
+	\item Contributions very welcome
+	\item Reviewers of the material and teachers wanted
+	\item Want to attend the course? Let us know!
+\end{itemize} 
+\end{frame}
 
 \begin{frame}
-\frametitle{References/further reading}
-\footnotesize{
-\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
-\bibitem[Git tutorial]{p1} kernel.org
-\newblock Git tutorial
-\newblock \url{https://www.kernel.org/pub/software/scm/git/docs/gittutorial.html}
-\end{thebibliography}
-}
+\frametitle{Contacts}
+\begin{itemize}
+	\item github.com/yhr/kernelteaching
+	\item kernel-teaching@googlegroups.com
+\end{itemize}
 \end{frame}
+
 
 %-----------------------------------------------------------------------
 \begin{frame}
