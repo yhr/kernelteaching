@@ -18,37 +18,35 @@ Make sure you point out the right path in CROSS_COMPILE when doing kernel
 builds!
 
 
-0. Prepare the sd-card with a raspbian-jessie-lite image
+0. Prepare the sd-card with a raspbian-stretch-lite image
 --------------------------------------------------------
 
-There is an image of raspian on the USB-stick, downloaded from 
+Download raspian stretch lite from:
 https://www.raspberrypi.org/downloads/raspbian/
 
-Write the image stored in ~/rasbianimage/ to the sd-card (or get help from someone if you don't have a sd-card slot on your machine) 
-
-See:
+Write the image to the sd card, use etcher or dd (or something else), see:
 https://www.raspberrypi.org/documentation/installation/installing-images/linux.md 
 
 Then follow the instructions in setup_pi.txt.
 
-
 1. Check out the latest branch and look at the history
 ------------------------------------------------------
 
-The kernel shipping with the raspbian distribution is 4.4, which is a tad old.
+The kernel shipping with the raspbian distribution is 4.9, which is a tad old.
 We want to use the latest available kernel from the rpi kernel repository,
-so switch branch to rpi-4.9.y, after checking kernel 4.4 was released.
-Tip: check the history for the Makefile.
+so we are going to build the  rpi-4.14.y branch, after checking kernel 4.9 was released.
+Tip: check the history for the Makefile (git log --oneline Makefile)
 
-Q: What date was kernel 4.4 released?
+Q: What date was kernel 4.9 released?
 
-..then check how many patches that has been merged between 4.4 and 4.9-rc4
+..then check how many patches that has been merged between 4.9 and 4.14.32
 
 Tip: git log [first revison]..[second revision] --pretty=oneline | wc -l
 
 Revisions can be specified as a hash of a particular commit, or as a tag.
 Upstream kernel version tags have not been cloned into the rpi repository,
 so you have to use commit hashes as revisons.
+
 
 Q: If the maintainers spent fifteen minutes reviewing each patch, how many man months, roughly, was spent on quality control?
 
@@ -65,6 +63,12 @@ configuration.
 
 If you have a RPI v2 or RPI v3 the default make config target is 
 bcm2709_defconfig, if it is RPI v1 it is bcmrpi_defconfig.
+
+Make sure to set up environment variable KERNEL to kernel7
+KERNEL=kernel7
+
+This is some recently introduced magic specified in:
+https://www.raspberrypi.org/documentation/linux/kernel/building.md
 
 Make a copy of the generated .config named .origconfig
 
@@ -111,6 +115,5 @@ Have a look at the installed module sets:
 	ls /lib/modules
 
 Q: Why did we have to install a new set of kernel modules?
-
 
 Done!

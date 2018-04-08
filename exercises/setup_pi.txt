@@ -22,6 +22,8 @@ on the network:
 	echo <new hostname> > /etc/hostname
 
 Enable root ssh login:
+	sudo raspi-config
+		Enable ssh under "Interfacing options", then quit
 	sudo nano /etc/ssh/sshd_config
 	..and change the line "PermitRootLogin without-password" to:
 		PermitRootLogin yes
