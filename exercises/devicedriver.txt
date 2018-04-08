@@ -27,6 +27,8 @@ to include extra devices.
 * Copy the .dts file from gpio-led-module/ to arch/arm/boot/dts/overlays
 
 * Add the .dts file to the makefile in arch/arm/boot/dts
+  (you do this by adding the line "led-gpio-key.dtbo" , see the other overlays in the makefile
+   for how the make file works)
 
 * Build the dtb target(like the previous lab)
 
